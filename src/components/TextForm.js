@@ -47,12 +47,7 @@ export default function TextForm(props) {
         props.showAlert('Converted to InverseCase', "success");
     }
     const handleCopyClick = () =>{
-        var str = document.getElementById("myBox");
-        str.select();
-        navigator.clipboard.writeText(str.value);
-        setTimeout(() => {
-            document.getSelection().removeAllRanges();
-        }, 1000);
+        navigator.clipboard.writeText(text);
         props.showAlert('Copied to Clipboard', "success");
     }
     const handleExtraSpaces = () =>{
@@ -82,7 +77,7 @@ export default function TextForm(props) {
         </div>
         <div className="container my-3" style = {{color: props.mode === 'dark'? 'white' : 'black'}}>
             <h2>Your text Summary</h2>
-            <p>{text === "" ? 0 : text.split(" ").filter((ele)=>{return ele.length!==0}).length} words and {text.length} characters</p>
+            <p>{text === "" ? 0 : text.split(/\s+/).filter((ele)=>{return ele.length!==0}).length} words and {text.length} characters</p>
             <p>{0.008 * text.split(" ").filter((ele)=>{return ele.length!==0}).length} Minutes read</p>
             <h3>Preview</h3>
             <p>{text.length > 0 ? text : 'Nothing to Preview'}</p>
