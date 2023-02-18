@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import { GrammarlyEditorPlugin } from '@grammarly/editor-sdk-react'
 
 export default function TextForm(props) {
     const handleUpClick = () =>{
@@ -65,7 +65,9 @@ export default function TextForm(props) {
         <div className="container" style = {{color: props.mode==='dark'?'white':'black'}}>
             <h1>{props.heading}</h1>
             <div className="mb-3">
-                <textarea className="form-control" value={text} style = {{backgroundColor: props.mode==='light'?'white':'grey', color: props.mode ==='dark'?'white':'black'}} onChange={handleOnChange} id="myBox" rows="8"></textarea>
+                <GrammarlyEditorPlugin clientId="client_2gCNaMpgQmgkg9MCeJbXXf">
+                    <textarea className="form-control" value={text} style = {{backgroundColor: props.mode==='light'?'white':'grey', color: props.mode ==='dark'?'white':'black'}} onChange={handleOnChange} id="myBox" rows="8"></textarea>
+                </GrammarlyEditorPlugin>
                 <button disabled = {text.length===0} className={`btn btn-${props.mode==='light'?'secondary':'dark'} my-2 mx-1`} onClick={handleClearClick}>Clear Text</button>
                 <button disabled = {text.length===0} className={`btn btn-${props.mode==='light'?'secondary':'dark'} my-2 mx-1`} onClick={handleUpClick}>Convert to UpperCase</button>
                 <button disabled = {text.length===0} className={`btn btn-${props.mode==='light'?'secondary':'dark'} my-2 mx-1`} onClick={handleLoClick}>Convert to LowerCase</button>
